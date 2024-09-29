@@ -20,6 +20,21 @@ This is an online attendance system built for college students and teachers. The
 
 ## Project Setup
 
+## Steps for Implementation:
+
+1. Set up Project Structure:
+Folders:
+/public: For HTML, CSS, and JavaScript files.
+/backend: For server-side code.
+/database: To connect to the database.
+2. Create HTML Pages:
+Login Pages:
+login.html (for students and teachers).
+admin-login.html (for the admin).
+Dashboard Pages:
+student-dashboard.html (for students to view attendance).
+teacher-dashboard.html (for teachers to mark attendance).
+admin-dashboard.html (to manage students, teachers, and classes).
 ### Prerequisites
 
 - **Node.js** installed on your machine.
