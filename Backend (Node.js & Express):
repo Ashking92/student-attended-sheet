@@ -1,0 +1,36 @@
+const express = require('express');
+const app = express();
+app.use(express.json());
+
+const users = {
+  student: { username: "student1", password: "pass123", role: "student" },
+  teacher: { username: "teacher1", password: "pass123", role: "teacher" },
+  admin: { username: "admin1", password: "adminpass", role: "admin" },
+};
+
+app.post('/login', (req, res) => {
+  const { username, password } = req.body;
+  const user = users[username];
+  if (user && user.password === password) {
+    return res.json({ success: true, role: user.role });
+  }
+  res.json({ success: false });
+});
+
+// Block Proxy IP (Example Middleware)
+app.use((req, res, next) => {
+  const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  if (isProxy(ip)) {
+    res.status(403).send('Proxy usage is not allowed.');
+  } else {
+    next();
+  }
+});
+
+function isProxy(ip) {
+  // Use a service like IPHub to detect proxies
+  // Placeholder logic
+  return ip.startsWith("192.168");  // Sample local proxy IPs
+}
+
+app.listen(3000, () => console.log('Server started on port 3000'));
